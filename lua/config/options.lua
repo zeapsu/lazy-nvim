@@ -3,7 +3,6 @@
 -- Add any additional options here
 local opt = vim.opt
 local g = vim.g
-
 -- nvim options
 -- opt.winbar = "%=%m %f"
 opt.swapfile = false
