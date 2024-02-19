@@ -4,7 +4,7 @@
 --
 -- Set tab spacing for specific file types
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  pattern = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "lua" },
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2

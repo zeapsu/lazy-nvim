@@ -7,4 +7,13 @@
 return {
   { "KeitaNakamura/tex-conceal.vim", event = "BufEnter *.tex" },
   { "matze/vim-tex-fold", event = "BufEnter *.tex" },
+  { "ellisonleao/gruvbox.nvim" },
+
+  -- configure LaxyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
+  },
 }
