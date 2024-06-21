@@ -94,4 +94,5 @@ return {
       })
     end,
   },
+  { "normen/vim-pio" },
 }
