@@ -15,3 +15,7 @@ opt.columns = 80
 
 -- plugin options
 g.vimtex_view_method = "sioyek"
+
+-- Molten: point Neovim's remote plugin host at the dedicated venv
+-- (keeps pynvim/jupyter_client isolated from project venvs)
+g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")

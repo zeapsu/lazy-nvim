@@ -1,0 +1,4 @@
+WRN 2026-02-22T02:44:39.673 ?.70822    server_start:199: Failed to start server: operation not permitted: /var/folders/24/ggylxxcj3xq362xbyt3gkg_00000gn/T/nvim.andrypaez/pqEtSw/nvim.70822.0
+WRN 2026-02-22T02:44:54.502 ?.70882    server_start:199: Failed to start server: operation not permitted: /var/folders/24/ggylxxcj3xq362xbyt3gkg_00000gn/T/nvim.andrypaez/IjtCbI/nvim.70882.0
+WRN 2026-02-22T02:45:09.415 ?.71059    server_start:199: Failed to start server: operation not permitted: /var/folders/24/ggylxxcj3xq362xbyt3gkg_00000gn/T/nvim.andrypaez/yA13FT/nvim.71059.0
+WRN 2026-02-22T02:45:23.074 ?.71109    server_start:199: Failed to start server: operation not permitted: /var/folders/24/ggylxxcj3xq362xbyt3gkg_00000gn/T/nvim.andrypaez/xMPU5k/nvim.71109.0
