@@ -83,15 +83,19 @@ return {
           end
 
           -- Remove from our active websockets list
+          local found = false
           for i, c in ipairs(active_websockets) do
             if c == client then
               table.remove(active_websockets, i)
+              found = true
               break
             end
           end
 
-          -- If no active browser tabs are left, stop the server
-          if #active_websockets == 0 then
+          -- If no active browser tabs are left, stop the server.
+          -- Only trigger this if the closed connection was actively tracked.
+          -- (If not found, it means active_websockets was already cleared by lp.close() on server stop/restart)
+          if found and #active_websockets == 0 then
             vim.schedule(function()
               lp.close()
               vim.notify("live-preview: All browser tabs closed. Server stopped.", vim.log.levels.INFO)
