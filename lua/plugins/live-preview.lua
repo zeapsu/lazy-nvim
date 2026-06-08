@@ -15,19 +15,66 @@ return {
     -- Initialize using setup
     require("livepreview").setup(opts)
 
-    -- Monkeypatch WebSocket handshake to detect when browser tabs are closed
+    local lp = require("livepreview")
+    local server_mod = require("livepreview.server")
     local ws = require("livepreview.server.websocket")
+    local handler = require("livepreview.server.handler")
+
+    -- List of active WebSocket client handles
+    local active_websockets = {}
+
+    -- 1. Safeguard WebSocket writes to prevent Neovim crashes on closed sockets
+    local original_send = ws.send
+    ws.send = function(client, message)
+      if client:is_closing() then return end
+      pcall(original_send, client, message)
+    end
+
+    -- 2. Explicitly clean up all sockets on server stop/close
+    local original_close = lp.close
+    lp.close = function()
+      for _, client in ipairs(server_mod.connecting_clients) do
+        if not client:is_closing() then
+          client:close()
+        end
+      end
+      server_mod.connecting_clients = {}
+      active_websockets = {}
+      original_close()
+    end
+
+    -- 3. Remove non-websocket HTTP requests from connecting_clients
+    local original_request = handler.request
+    handler.request = function(client, request)
+      local res = original_request(client, request)
+      if res then
+        -- This is a normal HTTP request. Once served, it shouldn't receive reload updates.
+        for i, c in ipairs(server_mod.connecting_clients) do
+          if c == client then
+            table.remove(server_mod.connecting_clients, i)
+            break
+          end
+        end
+      end
+      return res
+    end
+
+    -- 4. Monitor active WebSockets to trigger auto-stop when all tabs are closed
     local original_handshake = ws.handshake
     ws.handshake = function(client, request)
       original_handshake(client, request)
 
+      -- Add to our tracked active web sockets list
+      table.insert(active_websockets, client)
+
+      -- Start reading from the socket to detect connection closure (tab close)
       client:read_start(function(err, chunk)
         if err or not chunk then
           if not client:is_closing() then
             client:close()
           end
 
-          local server_mod = require("livepreview.server")
+          -- Remove from server_mod.connecting_clients
           for i, c in ipairs(server_mod.connecting_clients) do
             if c == client then
               table.remove(server_mod.connecting_clients, i)
@@ -35,9 +82,18 @@ return {
             end
           end
 
-          if #server_mod.connecting_clients == 0 then
+          -- Remove from our active websockets list
+          for i, c in ipairs(active_websockets) do
+            if c == client then
+              table.remove(active_websockets, i)
+              break
+            end
+          end
+
+          -- If no active browser tabs are left, stop the server
+          if #active_websockets == 0 then
             vim.schedule(function()
-              require("livepreview").close()
+              lp.close()
               vim.notify("live-preview: All browser tabs closed. Server stopped.", vim.log.levels.INFO)
             end)
           end
