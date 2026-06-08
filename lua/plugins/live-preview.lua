@@ -3,7 +3,7 @@ return {
   cmd = { "LivePreview" },
   keys = {
     { "<leader>vp", "<cmd>LivePreview start<cr>", desc = "Start Live Preview" },
-    { "<leader>vs", "<cmd>LivePreview stop<cr>", desc = "Stop Live Preview" },
+    { "<leader>vs", "<cmd>LivePreview close<cr>", desc = "Stop Live Preview" },
   },
   opts = {
     port = 5500,
