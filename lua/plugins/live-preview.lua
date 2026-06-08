@@ -12,8 +12,8 @@ return {
     autokill = true,
   },
   config = function(_, opts)
-    -- Initialize using the recommended set method
-    require("livepreview").set(opts)
+    -- Initialize using setup
+    require("livepreview").setup(opts)
 
     -- Auto-save on TextChanged/InsertLeave for HTML/CSS/JS files
     -- to enable real-time updates in the browser
