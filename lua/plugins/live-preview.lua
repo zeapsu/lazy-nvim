@@ -105,6 +105,15 @@ return {
       end)
     end
 
+    -- 5. Prevent restarting the server if it is already running
+    local original_start = lp.start
+    lp.start = function(filepath, port)
+      if lp.is_running() then
+        return true
+      end
+      return original_start(filepath, port)
+    end
+
     -- Auto-save on TextChanged/InsertLeave for HTML/CSS/JS files
     -- to enable real-time updates in the browser
     vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
