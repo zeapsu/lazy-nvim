@@ -3,6 +3,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        clangd = {
+          mason = false,
+        },
         harper_ls = {
           settings = {
             ["harper-ls"] = {
