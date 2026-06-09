@@ -6,6 +6,7 @@ local g = vim.g
 -- nvim options
 -- opt.winbar = "%=%m %f"
 opt.swapfile = false
+opt.background = "light" -- Solarized Light
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4

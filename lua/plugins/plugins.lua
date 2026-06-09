@@ -8,12 +8,13 @@ return {
   { "KeitaNakamura/tex-conceal.vim", event = "BufEnter *.tex" },
   { "matze/vim-tex-fold", event = "BufEnter *.tex" },
   { "ellisonleao/gruvbox.nvim" },
+  { "maxmx03/solarized.nvim", lazy = false, priority = 1000, opts = {} },
 
-  -- configure LaxyVim to load gruvbox
+  -- configure LazyVim to load Solarized Light
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "retrobox",
+      colorscheme = "solarized",
     },
   },
 
