@@ -10,7 +10,7 @@ return {
       { "<leader>apl", "<cmd>PiLog<cr>", desc = "Open Pi session log" },
     },
     opts = {
-      binary = "/opt/homebrew/bin/pi",
+      binary = "pi",
     },
   }
 }
