@@ -20,19 +20,21 @@ Integrate the `pi.nvim` (AI coding assistant) and `codex.nvim` (Codex CLI compan
 Create `lua/plugins/pi.lua` to manage setup:
 - Plugin: `"pablopunk/pi.nvim"`
 - Keymaps:
-  - `<leader>ap` -> `:PiAsk` (Normal Mode) / `:PiAskSelection` (Visual Mode)
-  - `<leader>apc` -> `:PiCancel` (Normal Mode)
-  - `<leader>apl` -> `:PiLog` (Normal Mode)
-- Configuration option `binary` set to `"/opt/homebrew/bin/pi"`.
+  - `<leader>ap` -> Group prefix `"pi"`
+  - `<leader>app` -> `<cmd>PiAsk<cr>` (Normal Mode) / `<cmd>PiAskSelection<cr>` (Visual Mode)
+  - `<leader>apc` -> `<cmd>PiCancel<cr>` (Normal Mode)
+  - `<leader>apl` -> `<cmd>PiLog<cr>` (Normal Mode)
+- Configuration option `binary` set to `"pi"`.
 
 ### 3.2 `codex.nvim` Configuration
 Create `lua/plugins/codex.lua` to manage setup:
 - Plugin: `"ishiooon/codex.nvim"`
 - Keymaps:
-  - `<leader>ax` -> `:Codex` (Normal Mode)
-  - `<leader>axf` -> `:CodexFocus` (Normal Mode)
-  - `<leader>axs` -> `:CodexSend` (Visual Mode) / `:CodexTreeAdd` (Normal Mode for file trees like `neo-tree`, `oil`, etc.)
-- Configuration option `terminal_cmd` set to `"/Users/andrypaez/.local/bin/codex"`.
+  - `<leader>ax` -> Group prefix `"codex"`
+  - `<leader>axx` -> `<cmd>Codex<cr>` (Normal Mode)
+  - `<leader>axf` -> `<cmd>CodexFocus<cr>` (Normal Mode)
+  - `<leader>axs` -> `<cmd>CodexSend<cr>` (Visual Mode) / `<cmd>CodexTreeAdd<cr>` (Normal Mode for file trees like `neo-tree`, `oil`, etc.)
+- Configuration option `terminal_cmd` set to `vim.fn.expand("$HOME/.local/bin/codex")`.
 
 ## 4. Implementation Plan
 - Step 1: Create `lua/plugins/pi.lua` with the designated configuration and keymaps.
