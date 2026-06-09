@@ -9,3 +9,13 @@ map("i", "jj", "<esc>", { noremap = true, silent = true })
 
 -- command mode shortcut
 map("n", ";", ":", { noremap = true, silent = true })
+
+-- Toggle Snacks.terminal with CMD+J (mimics VSCode)
+map({ "n", "t" }, "<D-j>", function()
+  Snacks.terminal()
+end, { desc = "Toggle Terminal" })
+
+-- Create new Snacks.terminal with CTRL+` (mimics VSCode)
+map({ "n", "t" }, "<C-`>", function()
+  Snacks.terminal.open()
+end, { desc = "New Terminal" })
