@@ -22,12 +22,12 @@ return {
           settings = {
             ["harper-ls"] = {
               userDictPath = vim.fn.stdpath("config") .. "/harper-user-dict.txt",
-            },
-            linters = {
-              -- Set to false to silence specific annoying linters
-              SentenceCapitalization = false,
-              SpellCheck = false,
-              AvoidCurses = false,
+              linters = {
+                -- Set to false to silence specific annoying linters
+                SentenceCapitalization = false,
+                SpellCheck = false,
+                AvoidCurses = false,
+              },
             },
           },
         },
