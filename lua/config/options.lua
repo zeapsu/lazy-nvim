@@ -36,6 +36,8 @@ opt.background = "light"
 
 -- plugin options
 g.vimtex_view_method = "sioyek"
+-- AI completion: use inline Copilot ghost text instead of the cmp menu source
+g.ai_cmp = false
 
 -- Molten: point Neovim's remote plugin host at the dedicated venv
 -- (keeps pynvim/jupyter_client isolated from project venvs)
